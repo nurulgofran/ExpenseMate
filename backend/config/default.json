@@ -1,0 +1,12 @@
+{
+    "jwtSecret": "YOUR_JWT_SECRET",
+    "db": {
+      "client": "pg",
+      "connection": {
+        "host": "localhost",
+        "database": "expensemate",
+        "user": "expensemate_user",
+        "password": "6458"
+      }
+    }
+  }
