@@ -5,7 +5,10 @@ const routes = require('./routes/index');
 const RealtimeUpdatesService = require('./services/RealtimeUpdatesService');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080', // Change from 3000 to 8080
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api', routes);
