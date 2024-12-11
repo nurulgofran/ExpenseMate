@@ -13,23 +13,37 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://localhost:4000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        })
       });
 
       if (!response.ok) {
-        throw new Error('Login failed');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Login failed');
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.token);
-      navigate('/groups');
+      
+      // Log successful response
+      console.log('Login successful:', data);
+
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        navigate('/groups');
+      } else {
+        throw new Error('No token received');
+      }
+
     } catch (err) {
-      setError(err.message);
+      console.error('Login error:', err);
+      setError(err.message || 'Login failed. Please check your credentials.');
     }
   };
 
