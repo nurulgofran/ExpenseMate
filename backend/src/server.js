@@ -6,7 +6,7 @@ const RealtimeUpdatesService = require('./services/RealtimeUpdatesService');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:8080', // Change from 3000 to 8080
+  origin: ['http://localhost:8080', 'http://localhost:3000'],
   credentials: true
 }));
 app.use(express.json());
