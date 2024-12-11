@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, List, ListItem, ListItemText, CircularProgress, Box, Link as MuiLink } from '@mui/material';
+import { 
+  Paper, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  CircularProgress, 
+  Box, 
+  Typography,
+  Link as MuiLink 
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
 function GroupList() {
