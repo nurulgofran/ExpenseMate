@@ -10,6 +10,7 @@ function RegisterPage() {
     bankDetails: ''
   });
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -30,10 +31,18 @@ function RegisterPage() {
         throw new Error(data.message || 'Registration failed');
       }
 
-      // Registration successful, redirect to login
-      navigate('/login');
+      // Show success message
+      setSuccess('Registration successful! Redirecting to login...');
+      setError('');
+      
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+
     } catch (err) {
       setError(err.message || 'Registration failed. Please try again.');
+      setSuccess('');
     }
   };
 
@@ -47,6 +56,7 @@ function RegisterPage() {
   return (
     <div>
       <Header />
+      {success && <div style={{ color: 'green', marginBottom: '10px' }}>{success}</div>}
       <h1>Register</h1>
       {error && <div style={{ color: 'red' }}>{error}</div>}
       <form onSubmit={handleSubmit}>
