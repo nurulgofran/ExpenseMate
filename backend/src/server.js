@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const routes = require('./routes/index');
-const RealtimeUpdatesService = require('../services/RealtimeUpdatesService');
+const RealtimeUpdatesService = require('./services/RealtimeUpdatesService');
 
 const app = express();
 app.use(cors());
