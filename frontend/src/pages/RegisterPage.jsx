@@ -18,20 +18,22 @@ function RegisterPage() {
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(formData)
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error);
+        throw new Error(data.message || 'Registration failed');
       }
 
       // Registration successful, redirect to login
       navigate('/login');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Registration failed. Please try again.');
     }
   };
 
