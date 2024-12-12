@@ -30,6 +30,7 @@ router.post('/groups', authMiddleware, GroupsController.createGroup);
 router.get('/groups', authMiddleware, GroupsController.getUserGroups);
 router.delete('/groups/:groupId', authMiddleware, GroupsController.deleteGroup);
 router.post('/groups/:groupId/members', authMiddleware, GroupsController.addMemberAfterCreation);
+router.get('/groups/:groupId/members', authMiddleware, GroupsController.getGroupMembers);
 
 router.post('/expenses', authMiddleware, ExpensesController.addExpense);
 router.get('/expenses/:groupId', authMiddleware, ExpensesController.getGroupExpenses);

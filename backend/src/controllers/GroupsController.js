@@ -1,5 +1,6 @@
 const GroupModel = require('../models/GroupModel');
 const UserModel = require('../models/UserModel');
+const GroupMembershipModel = require('../models/GroupMembershipModel');
 
 class GroupsController {
   static async createGroup(req, res) {
@@ -74,6 +75,19 @@ class GroupsController {
       message: 'Member added successfully', 
       user: { id: userToAdd.id, email: userToAdd.email }
     });
+  }
+
+  static async getGroupMembers(req, res) {
+    const { groupId } = req.params;
+    
+    // Ensure current user is a member of the group
+    const isMember = await GroupMembershipModel.isMember(groupId, req.userId);
+    if (!isMember) {
+      return res.status(403).json({ message: 'Not a group member' });
+    }
+    
+    const members = await GroupModel.getMembers(groupId);
+    res.json(members);
   }
 }
 
