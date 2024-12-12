@@ -1,12 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
-  // TODO: Add auth checks if needed
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
-    <header style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-      <Link to="/groups" style={{ marginRight: '10px' }}>Groups</Link>
-    </header>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          ExpenseMate
+        </Typography>
+        {token ? (
+          <>
+            <Button component={Link} to="/groups" color="inherit">Groups</Button>
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          </>
+        ) : (
+          <>
+            <Button component={Link} to="/login" color="inherit">Login</Button>
+            <Button component={Link} to="/register" color="inherit">Register</Button>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 
