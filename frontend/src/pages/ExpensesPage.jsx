@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ExpenseForm from '../components/ExpenseForm';
+import { Container, Typography, List, ListItem, ListItemText, Box, Button } from '@mui/material';
 
 function ExpensesPage() {
   const { groupId } = useParams();
   const [expenses, setExpenses] = useState([]);
-  
+
   useEffect(() => {
     fetch(`/api/expenses/${groupId}`, {
       headers: {
@@ -19,21 +20,38 @@ function ExpensesPage() {
   }, [groupId]);
 
   const handleExpenseAdded = (newExpense) => {
-    setExpenses([...expenses, newExpense]);
+    setExpenses(prev => [...prev, newExpense]);
   };
 
   return (
-    <div>
+    <>
       <Header />
-      <h1>Expenses for Group {groupId}</h1>
-      <ul>
-        {expenses.map(e => (
-          <li key={e.id}>{e.description} - {e.total_amount} EUR (Paid by {e.payerName})</li>
-        ))}
-      </ul>
-      <ExpenseForm groupId={groupId} onAdded={handleExpenseAdded} />
-      <a href={`/groups/${groupId}/settlement`}>View Settlement</a>
-    </div>
+      <Container maxWidth="md" sx={{ mt: 4 }}>
+        <Typography variant="h4" mb={2}>Expenses for Group {groupId}</Typography>
+        {expenses.length > 0 ? (
+          <List>
+            {expenses.map(e => (
+              <ListItem key={e.id}>
+                <ListItemText
+                  primary={`${e.description} - ${e.total_amount} EUR`}
+                  secondary={`Paid by ${e.payerName}`}
+                />
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          <Typography variant="body1" color="text.secondary">
+            No expenses recorded yet.
+          </Typography>
+        )}
+        <ExpenseForm groupId={groupId} onAdded={handleExpenseAdded} />
+        <Box mt={2}>
+          <Button component={Link} to={`/groups/${groupId}/settlement`} variant="outlined">
+            View Settlement
+          </Button>
+        </Box>
+      </Container>
+    </>
   );
 }
 
