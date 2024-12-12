@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
+import { Paper, Box, Typography, TextField, Button } from '@mui/material';
 
 function ExpenseForm({ groupId, onAdded }) {
   const [description, setDescription] = useState('');
   const [totalAmount, setTotalAmount] = useState('');
-  const [selectedMembers, setSelectedMembers] = useState([]);
-  const [splits, setSplits] = useState([]); 
-  // TODO: For now, assume equal splits. Advanced UI for custom splits can be developed later.
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`/api/expenses`, {
+    fetch('/api/expenses', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -18,9 +16,7 @@ function ExpenseForm({ groupId, onAdded }) {
       body: JSON.stringify({
         groupId,
         description,
-        totalAmount: parseFloat(totalAmount),
-        members: selectedMembers,
-        // If needed, send custom splits. For now, assume equal.
+        totalAmount: parseFloat(totalAmount)
       })
     })
       .then(res => res.json())
@@ -28,26 +24,39 @@ function ExpenseForm({ groupId, onAdded }) {
         onAdded(data);
         setDescription('');
         setTotalAmount('');
-        setSelectedMembers([]);
-        setSplits([]);
       })
       .catch(err => console.error(err));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add Expense</h3>
-      <div>
-        <label>Description:</label>
-        <input value={description} onChange={e => setDescription(e.target.value)} required />
-      </div>
-      <div>
-        <label>Amount (EUR):</label>
-        <input type="number" value={totalAmount} onChange={e => setTotalAmount(e.target.value)} required />
-      </div>
-      <p>TODO: Implement member selection and custom splits UI</p>
-      <button type="submit">Add Expense</button>
-    </form>
+    <Paper sx={{ p: 3, mt: 3 }}>
+      <Typography variant="h6" mb={2}>Add Expense</Typography>
+      <Box component="form" onSubmit={handleSubmit}>
+        <TextField
+          label="Description"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          required
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Amount (EUR)"
+          type="number"
+          value={totalAmount}
+          onChange={e => setTotalAmount(e.target.value)}
+          required
+          fullWidth
+          margin="normal"
+        />
+        <Typography variant="body2" color="textSecondary" mt={1}>
+          TODO: Implement member selection and custom splits
+        </Typography>
+        <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+          Add Expense
+        </Button>
+      </Box>
+    </Paper>
   );
 }
 
