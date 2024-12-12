@@ -4,8 +4,6 @@ const UsersController = require('../controllers/UsersController');
 const GroupsController = require('../controllers/GroupsController');
 const ExpensesController = require('../controllers/ExpensesController');
 const SettlementsController = require('../controllers/SettlementsController');
-
-// Simple JWT auth middleware
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
@@ -30,6 +28,7 @@ router.post('/login', UsersController.login);
 router.get('/profile', authMiddleware, UsersController.profile);
 router.post('/groups', authMiddleware, GroupsController.createGroup);
 router.get('/groups', authMiddleware, GroupsController.getUserGroups);
+router.delete('/groups/:groupId', authMiddleware, GroupsController.deleteGroup);
 
 router.post('/expenses', authMiddleware, ExpensesController.addExpense);
 router.get('/expenses/:groupId', authMiddleware, ExpensesController.getGroupExpenses);

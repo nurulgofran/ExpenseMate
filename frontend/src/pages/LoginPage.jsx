@@ -25,9 +25,10 @@ function LoginPage() {
 
       if (data.token) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userId', data.user.id); // Store the user ID
         navigate('/groups');
       } else {
-        throw new Error('No token received');
+        throw new Error('Invalid response data');
       }
     } catch (err) {
       console.error('Login error:', err);
