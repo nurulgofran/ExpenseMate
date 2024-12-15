@@ -60,15 +60,16 @@ Below are some screenshots illustrating ExpenseMate’s interface and features:
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/<yourusername>/ExpenseMate.git
+   
    cd ExpenseMate
 
 	2.	Install and Run Backend:
 
-cd backend
-npm install
-npm run migrate
-npm run seed
-npm start
+	cd backend
+	npm install
+	npm run migrate
+	npm run seed
+	npm start
 
 Backend server runs at http://localhost:4000.
 
