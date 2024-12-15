@@ -1,4 +1,3 @@
-Below is the README.md content you can copy and paste directly into a file named README.md:
 
 # ExpenseMate
 
