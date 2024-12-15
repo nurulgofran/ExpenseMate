@@ -62,8 +62,7 @@ Below are some screenshots illustrating ExpenseMate’s interface and features:
    git clone https://github.com/<yourusername>/ExpenseMate.git
    
    cd ExpenseMate
-
-	2.	Install and Run Backend:
+2.	Install and Run Backend:
 
 	cd backend
 	npm install
@@ -73,11 +72,11 @@ Below are some screenshots illustrating ExpenseMate’s interface and features:
 
 Backend server runs at http://localhost:4000.
 
-	3.	Install and Run Frontend:
+3.	Install and Run Frontend:
 
-cd ../frontend
-npm install
-npm start
+	cd ../frontend
+	npm install
+	npm start
 
 Frontend runs at http://localhost:8080.
 
