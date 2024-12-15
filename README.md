@@ -1,5 +1,3 @@
-Below is the raw Markdown content of the README.md file. You can copy the entire code block and paste it into a file named README.md without formatting issues:
-
 # ExpenseMate
 
 ExpenseMate is a web application designed to simplify the process of managing and settling shared expenses within groups. It’s perfect for traveling friends, roommates splitting household costs, or any group event requiring clear expense tracking and fair settlement calculations.
