@@ -57,10 +57,59 @@ Below are some screenshots illustrating ExpenseMate’s interface and features:
 - **PostgreSQL** or another configured database
 - Basic knowledge of running Node.js and React apps
 
+## Database Setup
+
+### PostgreSQL Configuration
+
+1. **Install PostgreSQL:**
+	```bash
+	# For Mac using Homebrew
+	brew install postgresql@14
+	brew services start postgresql@14
+	```
+
+2. **Create Database:**
+	```sql
+	psql postgres
+	CREATE DATABASE expensemate;
+	CREATE USER expensemate_user WITH ENCRYPTED PASSWORD 'your_password';
+	GRANT ALL PRIVILEGES ON DATABASE expensemate TO expensemate_user;
+	```
+
+3. **Configure Database Connection:** Create or modify `config/default.json`:
+	```json
+	{
+	  "database": {
+		"client": "postgresql",
+		"connection": {
+		  "host": "localhost",
+		  "port": 5432,
+		  "database": "expensemate",
+		  "user": "expensemate_user",
+		  "password": "your_password"
+		},
+		"pool": {
+		  "min": 2,
+		  "max": 10
+		},
+		"migrations": {
+		  "tableName": "knex_migrations"
+		}
+	  }
+	}
+	```
+
+4. **Run Migrations:**
+	```bash
+	cd backend
+	npx knex migrate:latest
+	```
+
 ### Setup Instructions
+
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/<yourusername>/ExpenseMate.git
+git clone https://github.com/nurulgofran/ExpenseMate.git
 cd ExpenseMate
 ```
 
@@ -72,8 +121,7 @@ npm run migrate
 npm run seed
 npm start
 ```
-
-The backend server runs at http://localhost:4000.
+The backend server runs at [http://localhost:4000](http://localhost:4000).
 
 #### 3. Frontend Setup
 ```bash
@@ -81,12 +129,11 @@ cd ../frontend
 npm install
 npm start
 ```
-
-The frontend runs at http://localhost:8080.
+The frontend runs at [http://localhost:8080](http://localhost:8080).
 
 #### 4. Access the App
+Open [http://localhost:8080](http://localhost:8080) in your browser. Register or log in, then create groups and add expenses.
 
-Open http://localhost:8080 in your browser. Register or log in, then create groups and add expenses.
 ## Configuration
 
 - **Database:** Check `config/default.json` for DB config.
@@ -126,4 +173,3 @@ This project is licensed under the MIT License.
 - **Mobile App:** A native or PWA version for on-the-go expense management.
 - **Advanced Permissions:** More granular group roles and permissions.
 - **Data Export:** Export settlement data as CSV or PDF.
-
