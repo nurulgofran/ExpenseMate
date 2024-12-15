@@ -1,3 +1,5 @@
+Below is the README.md content you can copy and paste directly into a file named README.md:
+
 # ExpenseMate
 
 ExpenseMate is a web application designed to simplify the process of managing and settling shared expenses within groups. It’s perfect for traveling friends, roommates splitting household costs, or any group event requiring clear expense tracking and fair settlement calculations.
@@ -40,8 +42,8 @@ Below are some screenshots illustrating ExpenseMate’s interface and features:
 
 1. **User Authentication:** Secure login and registration process.
 2. **Group Creation & Membership Management:** Create event-based groups and add members with ease.
-3. **Flexible Expense Splitting:**  
-   - **Equal Splits:** Automatically divide costs equally among selected members.  
+3. **Flexible Expense Splitting:**
+   - **Equal Splits:** Automatically divide costs equally among selected members.
    - **Custom Splits:** Assign exact amounts to each member for non-standard cost allocations.
 4. **Automated Settlement Calculation:** Simplifies the final settlement so everyone knows who owes whom.
 5. **Bank Details Display:** Shows payees’ bank information for simple external transfers.
@@ -56,70 +58,72 @@ Below are some screenshots illustrating ExpenseMate’s interface and features:
 - Basic knowledge of running Node.js and React apps
 
 ### Setup Instructions
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/<yourusername>/ExpenseMate.git
+cd ExpenseMate
+```
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/<yourusername>/ExpenseMate.git
-   
-   cd ExpenseMate
-2.	Install and Run Backend:
+#### 2. Backend Setup
+```bash
+cd backend
+npm install
+npm run migrate
+npm run seed
+npm start
+```
 
-	cd backend
-	npm install
-	npm run migrate
-	npm run seed
-	npm start
+The backend server runs at http://localhost:4000.
 
-Backend server runs at http://localhost:4000.
+#### 3. Frontend Setup
+```bash
+cd ../frontend
+npm install
+npm start
+```
 
-3.	Install and Run Frontend:
+The frontend runs at http://localhost:8080.
 
-	cd ../frontend
-	npm install
-	npm start
+#### 4. Access the App
 
-Frontend runs at http://localhost:8080.
-
-	4.	Access the App:
 Open http://localhost:8080 in your browser. Register or log in, then create groups and add expenses.
+## Configuration
 
-Configuration
-	•	Database: Check config/default.json for DB config.
-	•	Authentication: Uses JWT. Store your jwtSecret in config.
+- **Database:** Check `config/default.json` for DB config.
+- **Authentication:** Uses JWT. Store your `jwtSecret` in config.
 
-Technologies Used
-	•	Frontend: React, Material UI
-	•	Backend: Node.js, Express.js, Knex.js
-	•	Database: PostgreSQL
-	•	Real-Time Updates: Socket.io (planned enhancements)
+## Technologies Used
 
-Contributing
+- **Frontend:** React, Material UI
+- **Backend:** Node.js, Express.js, Knex.js
+- **Database:** PostgreSQL
+- **Real-Time Updates:** Socket.io (planned enhancements)
+
+## Contributing
 
 Contributions are welcome!
-	1.	Fork the repo.
-	2.	Create a new feature branch:
 
-git checkout -b feature/my-new-feature
+1. Fork the repo.
+2. Create a new feature branch:
+	```bash
+	git checkout -b feature/my-new-feature
+	```
+3. Commit and push your changes:
+	```bash
+	git add .
+	git commit -m "Add new feature"
+	git push origin feature/my-new-feature
+	```
+4. Open a Pull Request detailing your changes.
 
-
-	3.	Commit and push your changes:
-
-git add .
-git commit -m "Add new feature"
-git push origin feature/my-new-feature
-
-
-	4.	Open a Pull Request detailing your changes.
-
-License
+## License
 
 This project is licensed under the MIT License.
 
-Future Enhancements
-	•	Multiple Currencies: Convert expenses and handle exchange rates.
-	•	Mobile App: A native or PWA version for on-the-go expense management.
-	•	Advanced Permissions: More granular group roles and permissions.
-	•	Data Export: Export settlement data as CSV or PDF.
+## Future Enhancements
 
-
+- **Multiple Currencies:** Convert expenses and handle exchange rates.
+- **Mobile App:** A native or PWA version for on-the-go expense management.
+- **Advanced Permissions:** More granular group roles and permissions.
+- **Data Export:** Export settlement data as CSV or PDF.
 
